@@ -1,2 +1,17 @@
-<h1>Home#contact</h1>
-<p>Find me in app/views/home/contact.html.erb</p>
+<%=stylesheet_link_tag 'outerStyle.css' %>
+<h1>VGSwap</h1>
+<table>
+  <tr>
+    <th><%=link_to "About", home_about_path%></th>
+    <th><%=link_to "Index", home_index_path%></th>
+    <th><%=link_to "Contact", home_contact_path%></th>
+  </tr>
+</table>
+<p>Contact us at contact@vgswap.xyz</p>
+<form>
+  <input type="text" name="subject" placeholder="Subject">
+  <input type="text" name="message" placeholder="Your message">
+  <input type="text" name="name" placeholder="Your name">
+  <input type="text" name="email" placeholder="Your E-Mail address">
+  <input type="submit">
+</form>

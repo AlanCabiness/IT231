@@ -1,3 +1,15 @@
-<%= stylesheet_link_tag 'home.scss' %>
-<h1>Home#about</h1>
-<p>Find me in app/views/home/about.html.erb</p>
+<%=stylesheet_link_tag 'outerStyle.css' %>
+<h1>VGSwap</h1>
+<table>
+  <tr>
+    <th><%=link_to "About", home_about_path%></th>
+    <th><%=link_to "Index", home_index_path%></th>
+    <th><%=link_to "Contact", home_contact_path%></th>
+  </tr>
+</table>
+<p>Two video games with a large market for in-game items are Counter Strike: Global Offensive and Rocket League.</p>
+<%= image_tag 'csgo.jpg', :size => '250x250'  %>
+<%= image_tag 'RLIcon.jpg', :size => '250x250' %> <br>
+<p>These games have virtual items that sell for up to thousands of dollars, yet marketplaces to buy and sell these
+  items are few and far between, so people are always on the lookout for a way to sell their items for cash.
+  This is where we come in.</p>
