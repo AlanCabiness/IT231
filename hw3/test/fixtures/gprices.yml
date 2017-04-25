@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  platform: MyString
+  title: MyString
+  release: 2017-04-24
+  price: 9.99
+  tradeValue: 9.99
+  rating: MyString
+
+two:
+  platform: MyString
+  title: MyString
+  release: 2017-04-24
+  price: 9.99
+  tradeValue: 9.99
+  rating: MyString

@@ -1,0 +1,2 @@
+class IPrice < ApplicationRecord
+end

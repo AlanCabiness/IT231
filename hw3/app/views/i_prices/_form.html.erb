@@ -1,0 +1,47 @@
+<%= form_for(i_price) do |f| %>
+  <% if i_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(i_price.errors.count, "error") %> prohibited this i_price from being saved:</h2>
+
+      <ul>
+      <% i_price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :game %>
+    <%= f.text_field :game %>
+  </div>
+
+  <div class="field">
+    <%= f.label :itemName %>
+    <%= f.text_field :itemName %>
+  </div>
+
+  <div class="field">
+    <%= f.label :itemId %>
+    <%= f.number_field :itemId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tradeValue %>
+    <%= f.text_field :tradeValue %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

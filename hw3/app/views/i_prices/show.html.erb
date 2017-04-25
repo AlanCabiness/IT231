@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @i_price.game %>
+</p>
+
+<p>
+  <strong>Itemname:</strong>
+  <%= @i_price.itemName %>
+</p>
+
+<p>
+  <strong>Itemid:</strong>
+  <%= @i_price.itemId %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @i_price.price %>
+</p>
+
+<p>
+  <strong>Tradevalue:</strong>
+  <%= @i_price.tradeValue %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @i_price.rating %>
+</p>
+
+<%= link_to 'Edit', edit_i_price_path(@i_price) %> |
+<%= link_to 'Back', i_prices_path %>

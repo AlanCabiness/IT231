@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>I Prices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Itemname</th>
+      <th>Itemid</th>
+      <th>Price</th>
+      <th>Tradevalue</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @i_prices.each do |i_price| %>
+      <tr>
+        <td><%= i_price.game %></td>
+        <td><%= i_price.itemName %></td>
+        <td><%= i_price.itemId %></td>
+        <td><%= i_price.price %></td>
+        <td><%= i_price.tradeValue %></td>
+        <td><%= i_price.rating %></td>
+        <td><%= link_to 'Show', i_price %></td>
+        <td><%= link_to 'Edit', edit_i_price_path(i_price) %></td>
+        <td><%= link_to 'Destroy', i_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New I Price', new_i_price_path %>

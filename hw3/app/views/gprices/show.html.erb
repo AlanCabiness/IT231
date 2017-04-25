@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @gprice.platform %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @gprice.title %>
+</p>
+
+<p>
+  <strong>Release:</strong>
+  <%= @gprice.release %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @gprice.price %>
+</p>
+
+<p>
+  <strong>Tradevalue:</strong>
+  <%= @gprice.tradeValue %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @gprice.rating %>
+</p>
+
+<%= link_to 'Edit', edit_gprice_path(@gprice) %> |
+<%= link_to 'Back', gprices_path %>

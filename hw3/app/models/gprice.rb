@@ -1,0 +1,2 @@
+class Gprice < ApplicationRecord
+end

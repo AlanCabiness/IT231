@@ -1,0 +1,47 @@
+<%= form_for(gprice) do |f| %>
+  <% if gprice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gprice.errors.count, "error") %> prohibited this gprice from being saved:</h2>
+
+      <ul>
+      <% gprice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :platform %>
+    <%= f.text_field :platform %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :release %>
+    <%= f.date_select :release %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tradeValue %>
+    <%= f.text_field :tradeValue %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
