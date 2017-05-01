@@ -1,0 +1,9 @@
+<h1>Genre Stats</h1>
+
+<ul>
+
+  <%= (0..41).step(3) do |n| %>
+      <li><%=@genres[n/3]%>: <%=@genreData[n]%> | Gross: $<%= number_with_precision(@genreData[n+1], :precision => 0, :delimiter => ',') %> | Tickets: <%= number_with_precision(@genreData[n+2], :precision => 0, :delimiter => ',') %></li>
+  <% end %>
+
+</ul>

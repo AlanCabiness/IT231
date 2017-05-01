@@ -1,0 +1,49 @@
+<h1>Home#MidtermExam</h1>
+<p>Find me in app/views/home/MidtermExam.html.erb</p>
+
+<h1>Part 1: Ruby and Rails and HTML / CSS</h1>
+
+Create a new rails project named midterm Create a new controller named home The controller should have the following actions
+Index ClassInfo MidtermExam Link all of the pages together so they are accessible from one another. You must utilize the
+embedded Ruby way of doing this Create a header file for your web application. It must include a image logo and the links
+to the other pages in your application. This means the links to all pages do NOT belong in the specific views. They belong
+in the header Create a footer file. The footer does not need to include any important information. Just text signifying
+that it is the footer. Add HTML so it is rendered on EVERY HTML page in your web application The HTML template should
+display: Header Footer View being rendered
+<h1>Part 2: Database interaction and displaying data</h1>
+
+Create a new scaffold for a model named movies The scaffold should have the following fields rank integer name string
+releaseDate date distributor string genre string mpaa string grossEarning integer ticketsSold integer Migrate the
+scaffold to the database Seed the database with data by reading in the file 'highestGrossing.txt'. Below is some
+code to get you started. It will read the file into an array for you. require 'csv' csv_text = File.read('path to the
+file – you have to enter this') #example: File.read('C:\Users\bodonnell\Desktop\highestGrossing.txt') mycsv = CSV.parse
+(csv_text, :headers => true, :col_sep => "\t") HINT: Look at code I provided from class!! Run the proper rake command
+to insert the contents of the file into the database Navigate to the proper URL to view all of the records. There are
+a couple things wrong with the data. This is expected and do not worry about it. Note two things: The numbers for gross
+earnings and tickets sold are not formatted properly Dates do not appear for all records Open your home controller In
+your index action create a query to select the top 10 records (based on their id) of the database and store the results
+of that query into a variable called topTen Go to your index view Write the embedded Ruby code to loop through the query
+results from step 6. Display the records in an HTML unordered list. Remember when you iterate through your query results
+; each iteration is a RECORD which means it will not give you the full text you want! In order to retrieve the names and
+earnings you have to access them using dot notation (ie. .name and .grossEarning) Use this code to print the
+grossEarnings and ticketsSold with proper formatting number_with_precision(variableName, :precision => 0, :delimiter =>
+',')
+<h1>Part 3: Programming in Ruby</h1>
+
+Create a new view for the home controller called genreCount You must also create a new action in the home controller
+called genreCount In the genreCount action in the home controller do the following Select all of the records in the
+database (HINT: look at the movies controller to see how this is done) Create a 'for loop' to iterate through each
+one of the records Inspect the genre field of each record. For each genre do the following HINT: You are testing for
+several conditions. Review how to compare string values!!! Increment a counter to see how many times a specific genre
+shows up Increment a variable which stores the amount of gross earnings for the title Increment a variable which stores
+the amount of ticket sales for the title HINT: I highly recommend creating variables for each value. Do not try to over
+complicate things by trying to fit values into a finite amount of space. Your memory usage is essentially infinite,
+take advantage of it! Display the results in the genreCount view created above For numerical values do not forget about
+the number_with_precision code above!!!! Add validation rules to model Movies can have multiple distributors and
+multiple values per field. The validation rule I want enforced is that the Name field has content. All other fields
+may be blank
+<h1>Part 4: Bringing it all together</h1>
+
+In your header file create two new links – these links must be done in embedded ruby A new link for the genreCount
+view A new link to the /movies/index action It is acceptable for this to be hard coded (aka does not need to be a ruby
+generated path) Edit your config file so the root page goes to /home/index Add a routing entry for the genreCount view

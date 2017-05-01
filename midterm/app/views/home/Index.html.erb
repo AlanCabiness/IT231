@@ -1,0 +1,11 @@
+<h1>Home#Index</h1>
+<p>Find me in app/views/home/Index.html.erb</p>
+
+<ul>
+  <%@topTen.each do |t|%>
+
+  <li><%=t.id%> | <%=t.name%> | $<%=number_with_precision(t.grossEarning, :precision => 0, :delimiter => ',')%></li>
+
+  <% end %>
+
+</ul>
