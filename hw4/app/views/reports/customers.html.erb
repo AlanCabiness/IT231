@@ -1,0 +1,8 @@
+<h2>Here is the data for all customers with accounts on VGSwap</h2>
+<br>
+<ul>
+  <% @allCustomers.each do |i| %>
+    <li><%=i.name%> | <%=i.city%> | <%=i.state%> | <%=i.phone%> | <%=i.email%></li>
+  <% end %>
+</ul>
+<br>
