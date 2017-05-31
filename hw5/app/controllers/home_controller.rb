@@ -1,6 +1,19 @@
+require 'digest/sha2'
 class HomeController < ApplicationController
-  def index
 
+  before_filter :authenticate, except: [:about, :contact, :index, :search]
+
+  def authenticate
+    userhash = { }
+    User.all.each do |user|
+      userhash.store(user.username, user.password)
+    end
+    authenticate_or_request_with_http_digest("localhost") do |username|
+      userhash[username]
+    end
+  end
+
+  def index
     promos = Promotion.all
     promos.each do |i|
       if i.startDate <= Date.today && i.endDate >= Date.today
@@ -17,4 +30,9 @@ class HomeController < ApplicationController
 
   def search
   end
+
+  def settings
+
+  end
+
 end
