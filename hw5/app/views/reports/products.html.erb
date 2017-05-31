@@ -1,0 +1,6 @@
+<h2>Here is the data for all products for sale on VGSwapS</h2><br>
+
+<% @allProducts.each do |i| %>
+    <li><%=i.pName%> | <%=i.price%> | <%=i.category%></li>
+<% end %>
+<br>
