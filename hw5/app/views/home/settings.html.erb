@@ -1,1 +1,8 @@
-<%=stylesheet_link_tag 'baseStyle.css' %>
+Choose a favorite team to follow:
+<form>
+<%@teams.each do |i|%>
+  <input type="radio" name="teams" value=<%=i.name%>> <%=i.name%>
+<%end %>
+</form>
+<button>Save</button>
+

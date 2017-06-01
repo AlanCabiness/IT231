@@ -1,7 +1,7 @@
 require 'digest/sha2'
 class HomeController < ApplicationController
 
-  before_filter :authenticate, except: [:about, :contact, :index, :search]
+  before_filter :authenticate, except: [:about, :contact, :index, :search, :help, :privacy]
 
   def authenticate
     userhash = { }
@@ -32,6 +32,20 @@ class HomeController < ApplicationController
   end
 
   def settings
+    @teams = Sport.all
+
+
+  end
+
+  def help
+
+  end
+
+  def privacy
+
+  end
+
+  def cart
 
   end
 
