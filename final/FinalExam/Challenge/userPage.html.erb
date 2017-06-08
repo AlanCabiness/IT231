@@ -1,0 +1,72 @@
+<h1>Finales</h1>
+<h1 id='notice'><%= notice %></h1>
+<p>My Watched Finales</p>
+<% if @watched.length > 0%>
+    <%= form_tag :action => 'removeSeries' do %>
+        <table>
+          <thead>
+          <tr>
+            <th>Watched?</th>
+            <th>Series</th>
+            <th>Viewership</th>
+            <th>Rating</th>
+            <th>Share</th>
+            <th>Date</th>
+            <th>Network</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @watched.each do |s| %>
+              <tr>
+                <td><%= check_box_tag s.id, s.id%></td>
+                <td><%= s.series %></td>
+                <td><%= s.viewership %></td>
+                <td><%= s.rating %></td>
+                <td><%= s.share %></td>
+                <td><%= s.date %></td>
+                <td><%= s.network %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag 'Remove Checked' %>
+    <% end %>
+<%else%>
+    <p>You have not watched any series</p>
+<%end%>
+
+<p>All teams</p>
+<p>Select Watched Finales</p>
+<%= form_tag :action => 'saveList' do %>
+    <table>
+      <thead>
+      <tr>
+        <th>Watched?</th>
+        <th>Series</th>
+        <th>Viewership</th>
+        <th>Rating</th>
+        <th>Share</th>
+        <th>Date</th>
+        <th>Network</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @allratings.each do |s| %>
+          <tr>
+            <td><%= check_box_tag s.id, s.id%></td>
+            <td><%= s.series %></td>
+            <td><%= s.viewership %></td>
+            <td><%= s.rating %></td>
+            <td><%= s.share %></td>
+            <td><%= s.date %></td>
+            <td><%= s.network %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= submit_tag 'Save' %>
+<% end %>

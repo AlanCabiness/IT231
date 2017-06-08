@@ -1,0 +1,35 @@
+<p> <h1>Search</h1> </p>
+<%= form_tag :action => 'search' do %>
+    <p>What data point are you looking for?:
+      <%= text_field_tag 'hoorayForSearch', @mysearch %> </p>
+    <br/>
+    <% if @results > 0 %>
+        <% if @series.length >0 %>
+            <p> Here are the search results:</p>
+            <p>
+            <table>
+              <tr>
+                <th>Series</th>
+                <th>Viewership</th>
+                <th>Rating</th>
+                <th>Share</th>
+                <th>Date</th>
+                <th>Network</th>
+              </tr>
+              <% @series.each do |n| %>
+                  <tr>
+                    <th><%=n.series%></th>
+                    <th><%=n.viewership%></th>
+                    <th><%=n.rating%></th>
+                    <th><%=n.share%></th>
+                    <th><%=n.date%></th>
+                    <th><%=n.network%></th>
+                  </tr>
+              <% end %>
+            </table>
+        <% else%>
+            <p>There were no data points with your search criteria. Try again!</p>
+        <% end %>
+    <% end %>
+    <%= submit_tag 'Search' %>
+<% end %>

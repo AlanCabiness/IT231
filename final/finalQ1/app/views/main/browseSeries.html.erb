@@ -1,0 +1,23 @@
+<h1>Ratings - Sorted by Series</h1>
+
+
+<table>
+  <tr>
+    <th><%=link_to "Series", main_browseSeries_path %></th>
+    <th><%=link_to "Viewership", main_browseViewership_path %> </th>
+    <th><%=link_to "Rating", main_browseRating_path %></th>
+    <th><%=link_to "Share", main_browseShare_path %></th>
+    <th><%=link_to "Date", main_browseDate_path %></th>
+    <th><%=link_to "Network", main_browseNetwork_path %></th>
+  </tr>
+  <%@ratings.each do |n| %>
+    <tr>
+      <th><%=n.series%></th>
+      <th><%=n.viewership%></th>
+      <th><%=n.rating%></th>
+      <th><%=n.share%></th>
+      <th><%=n.date%></th>
+      <th><%=n.network%></th>
+    </tr>
+  <%end%>
+</table>
