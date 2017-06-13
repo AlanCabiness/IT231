@@ -113,21 +113,21 @@ class MainController < ApplicationController
   def userPage
     @allratings = Rating.all
     @watched = []
-    @seriesIds = nil
+    @productID = nil
 
     user = User.where('id = ?', session[:user_id])[0]
     if !user.preferences.nil?
-      @seriesIds = eval(user.preferences)
-      session[:saved_series] = @seriesIds
+      @productID = eval(user.preferences)
+      session[:cart_items] = @productID
     end
 
 
-    if !@seriesIds.nil?
-      if @seriesIds.length == 0
-        @seriesIds = nil
+    if !@productID.nil?
+      if @productID.length == 0
+        @productID = nil
       end
 
-      @seriesIds.each do |sid|
+      @productID.each do |sid|
         @watched.push(Rating.where('id = ?', sid)[0])
       end
     end
@@ -135,8 +135,8 @@ class MainController < ApplicationController
 
   def saveList
     savedArray = []
-    if !session[:saved_series].nil?
-      savedArray = session[:saved_series]
+    if !session[:cart_items].nil?
+      savedArray = session[:cart_items]
     end
 
     Rating.all.each do |favorite|
@@ -154,8 +154,8 @@ class MainController < ApplicationController
 
   def removeSeries
     savedArray = []
-    if !session[:saved_series].nil?
-      savedArray = session[:saved_series]
+    if !session[:cart_items].nil?
+      savedArray = session[:cart_items]
     end
 
     savedArray.each do |fid|

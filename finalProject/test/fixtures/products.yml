@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game: MyString
+  itemName: MyString
+  price: 9.99
+  tradeValue: 9.99
+  imagePath: MyString
+
+two:
+  game: MyString
+  itemName: MyString
+  price: 9.99
+  tradeValue: 9.99
+  imagePath: MyString

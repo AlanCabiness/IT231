@@ -1,0 +1,69 @@
+<h1>Cart</h1>
+<h1 id='notice'><%= notice %></h1>
+<p>My Cart</p>
+<% if @inCart.length > 0%>
+    <%= form_tag :action => 'removeItems' do %>
+        <table>
+          <thead>
+          <tr>
+            <th>Remove From Cart</th>
+            <th>Game</th>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>TradeValue</th>
+            <th>Image</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @inCart.each do |s| %>
+              <tr>
+                <td><%= check_box_tag s.id, s.id%></td>
+                <td><%= s.game%></td>
+                <td><%= s.itemName%></td>
+                <td><%= s.price %></td>
+                <td><%= s.tradeValue %></td>
+                <th><%= image_tag(s.imagePath, :size => '75x75')%></th>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag 'Remove Checked' %>
+    <% end %>
+<%else%>
+    <p>You have no items in your cart</p>
+<%end%>
+
+<%= link_to image_tag('checkout.png', :size => '392x130'), main_checkout_path %><br>
+<p>All items</p>
+<p>Add these to cart?</p>
+<%= form_tag :action => 'saveList' do %>
+    <table>
+      <thead>
+      <tr>
+        <th>Add to Cart</th>
+        <th>Game</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>TradeValue</th>
+        <th>Image</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @allItems.each do |s| %>
+          <tr>
+            <td><%= check_box_tag s.id, s.id%></td>
+            <td><%= s.game%></td>
+            <td><%= s.itemName%></td>
+            <td><%= s.price %></td>
+            <td><%= s.tradeValue %></td>
+            <th><%= image_tag(s.imagePath, :size => '50x50')%></th>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= submit_tag 'Add to Cart' %>
+<% end %>

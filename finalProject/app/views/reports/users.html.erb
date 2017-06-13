@@ -1,0 +1,8 @@
+<h2>Here is the data for all customers with accounts on VGSwap</h2>
+<br>
+<ul>
+  <% @allUsers.each do |i| %>
+      <li><%=i.username%> | <%=i.password%> | <%=i.email%> | <%=i.balance%> | <%=i.steamID%></li>
+  <% end %>
+</ul>
+<br>

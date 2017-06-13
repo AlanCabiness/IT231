@@ -1,0 +1,19 @@
+<%=stylesheet_link_tag 'baseStyle.css' %>
+<h1><%= link_to image_tag('VGSlogo.png', :size => '100x100'), main_index_path %>VGSwap</h1>
+<table>
+  <tr>
+    <th><%= link_to "About", main_about_path %></th>
+    <th><%= link_to "Index", main_index_path %></th>
+    <th><%= link_to "Contact", main_contact_path %></th>
+    <th><%= link_to "Search", main_search_path %></th>
+    <th><%= link_to "Reports", reports_listing_path%></th>
+    <th><% if session[:user_id].nil?%>
+          <%= link_to "Login", main_login_path%>
+          <%= link_to "Create Account", main_createUser_path%>
+        <% else %>
+          <%= link_to "Logout", main_logout_path%>
+        <% end %>
+    </th>
+    <th><%= link_to image_tag('cart.png', :size => '25x25'), main_cart_path %></th>
+  </tr>
+</table>

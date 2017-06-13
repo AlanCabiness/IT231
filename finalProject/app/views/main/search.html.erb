@@ -1,0 +1,33 @@
+<p> <h1>Search</h1> </p>
+<%= form_tag :action => 'search' do %>
+    <p>What data point are you looking for?:
+      <%= text_field_tag 'hoorayForSearch', @mysearch %> </p>
+    <br/>
+    <% if @results > 0 %>
+        <% if @items.length >0 %>
+            <p> Here are the search results:</p>
+            <p>
+            <table>
+              <tr>
+                <th>Game</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>TradeValue</th>
+                <th>Image</th>
+              </tr>
+              <% @items.each do |n| %>
+                  <tr>
+                    <th><%=n.game%></th>
+                    <th><%=n.itemName%></th>
+                    <th><%=n.price%></th>
+                    <th><%=n.tradeValue%></th>
+                    <th><%= image_tag(n.imagePath, :size => '50x50')%></th>
+                  </tr>
+              <% end %>
+            </table>
+        <% else%>
+            <p>There were no data points with your search criteria. Try again!</p>
+        <% end %>
+    <% end %>
+    <%= submit_tag 'Search' %>
+<% end %>

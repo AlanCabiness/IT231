@@ -1,12 +1,24 @@
+require 'digest/md5'
+require 'date'
+REALM = "localhost"
 class MainController < ApplicationController
 
+  def home
+  end
 
-  require 'digest/md5'
-  REALM = "localhost"
+  def index
+  end
 
+  def about
+  end
 
-  def browseSeries
-    @ratings = Rating.all.order("series")
+  def contact
+  end
+
+  def help
+  end
+
+  def privacy
   end
 
   def search
@@ -15,28 +27,14 @@ class MainController < ApplicationController
       @results=1
       @searchinput = params[:hoorayForSearch]
       @searchcriteria="%"+@searchinput+"%"
-      @series = Rating.where("series like '"+@searchcriteria+"' or network like '"+@searchcriteria+"'")
+      @items = Product.where("game like '"+@searchcriteria+"' or itemName like '"+@searchcriteria+"'")
     end
   end
 
-  def browseViewership
-    @ratings = Rating.all.order("viewership")
+  def cart
   end
 
-  def browseRating
-    @ratings = Rating.all.order("rating")
-  end
-
-  def browseShare
-    @ratings = Rating.all.order("share")
-  end
-
-  def browseDate
-    @ratings = Rating.all.order("date")
-  end
-
-  def browseNetwork
-    @ratings = Rating.all.order("network")
+  def preferences
   end
 
   def login
@@ -47,7 +45,7 @@ class MainController < ApplicationController
     userid = session[:user_id]
     if !userid.nil?
       user = User.where('id = ?', userid)[0]
-      redirect_to main_userPage_path, :notice => "Welcome to your page, "+user.username
+      redirect_to main_cart_path, :notice => "Welcome to VGSwap, "+user.username
     else
       if !params[:username].nil?
 
@@ -68,6 +66,11 @@ class MainController < ApplicationController
         end
       end
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to main_login_path, :notice => "You have been logged out"
   end
 
   def createUser
@@ -105,19 +108,14 @@ class MainController < ApplicationController
     end
   end
 
-  def logout
-    session[:user_id] = nil
-    redirect_to main_login_path, :notice => "You have been logged out"
-  end
-
-  def userPage
-    @allratings = Rating.all
-    @watched = []
+  def cart
+    @allItems = Product.all
+    @inCart = []
     @productID = nil
 
     user = User.where('id = ?', session[:user_id])[0]
-    if !user.preferences.nil?
-      @productID = eval(user.preferences)
+    if !user.cart.nil?
+      @productID = eval(user.cart)
       session[:cart_items] = @productID
     end
 
@@ -128,7 +126,7 @@ class MainController < ApplicationController
       end
 
       @productID.each do |sid|
-        @watched.push(Rating.where('id = ?', sid)[0])
+        @inCart.push(Product.where('id = ?', sid)[0])
       end
     end
   end
@@ -139,20 +137,20 @@ class MainController < ApplicationController
       savedArray = session[:cart_items]
     end
 
-    Rating.all.each do |favorite|
+    Product.all.each do |favorite|
       fav = params[favorite.id.to_s]
       if !fav.nil?
         savedArray.push(favorite.id)
       end
     end
     user = User.where('id = ?', session[:user_id])[0]
-    user.preferences = savedArray
+    user.cart = savedArray
     user.save
 
-    redirect_to main_userPage_path, :notice => "Series saved"
+    redirect_to main_cart_path, :notice => "Cart Updated"
   end
 
-  def removeSeries
+  def removeItems
     savedArray = []
     if !session[:cart_items].nil?
       savedArray = session[:cart_items]
@@ -165,9 +163,35 @@ class MainController < ApplicationController
       end
     end
     user = User.where('id = ?', session[:user_id])[0]
-    user.preferences = savedArray
+    user.cart = savedArray
     user.save
 
-    redirect_to main_userPage_path, :notice => "Series saved"
+    redirect_to main_cart_path, :notice => "Cart Updated"
+  end
+
+  def checkout
+    total = 0
+    user = User.where('id = ?', session[:user_id])[0]
+    if !user.cart.nil?
+      savedArray = eval(user.cart)
+      savedArray.each do |x|
+        item = Product.where('id = ?', x)[0]
+        total+=item.price
+      end
+    end
+    savedArray = eval(user.cart)
+    savedArray.each do |fid|
+      fav = params[fid.to_s]
+      if !fav.nil?
+        savedArray.delete(fid)
+      end
+    end
+    user = User.where('id = ?', session[:user_id])[0]
+    user.cart = nil
+    user.save
+
+    sale = Sale.create({user:session[:user_id], amount:total, date:Date.today})
+    redirect_to main_cart_path, :notice => ["Thank you for your purchase! Your total is $",total].join('')
   end
 end
+
